@@ -21,4 +21,5 @@ from crimeapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/',views.login,name='login'),
+    path('profile/',views.profile,name='profile')
 ]
