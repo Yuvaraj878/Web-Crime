@@ -1,0 +1,36 @@
+  .navbar-brand img {
+    width: 90px;
+    height: 79px;
+    margin-right: 20px; 
+  }
+
+  .navbar .profile {
+    width: 90px;
+    height: 79px;
+    margin-right: -5px; 
+  }
+
+  .home-icon {
+    width: 52px; 
+    height: 52px; 
+    margin-left: 3px;
+}
+
+.dash-icon{
+    width: 60px; 
+    height: 52px; 
+    margin-left: 16px;
+}
+
+.emer-icon {
+    width: 60px; 
+    height: 52px; 
+    margin-left: 16px;    
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: #fff; 
+    margin-top: -10px;
+}
+
+
