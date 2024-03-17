@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Police Dashboard</a>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container mt-4">
+        <h2>Alert Messages</h2>
+        <div id="alertMessages">
+            <!-- Alert messages will be displayed here -->
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- JavaScript to fetch and display alert messages -->
+    <script>
+        // Fetch alert messages from the server and display them
+        function fetchAlertMessages() {
+            // Here you would make an AJAX request to your server to fetch alert messages
+            // Example:
+            // fetch("/api/alerts")
+            // .then(response => response.json())
+            // .then(data => {
+            //     // Display alert messages in the #alertMessages div
+            //     data.forEach(alert => {
+            //         document.getElementById("alertMessages").innerHTML += `<p>${alert.message}</p>`;
+            //     });
+            // })
+            // .catch(error => console.error('Error fetching alert messages:', error));
+            
+            // For demonstration purposes, let's add some dummy alert messages
+            var dummyAlerts = [
+                { id: 1, message: "Emergency alert: Please respond immediately!" },
+                { id: 2, message: "Another emergency alert: Urgent response required!" }
+            ];
+
+            // Display dummy alert messages in the #alertMessages div
+            dummyAlerts.forEach(alert => {
+                document.getElementById("alertMessages").innerHTML += `<p>${alert.message}</p>`;
+            });
+        }
+
+        // Fetch and display alert messages when the page loads
+        fetchAlertMessages();
+    </script>
+</body>
+</html>

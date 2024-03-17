@@ -1,34 +1,60 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <link rel="stylesheet" href="globals.css" />
-  <link rel="stylesheet" href="/crime/static/css/profile.css" />
-</head>
-<body>
-  <div class="android-large">
-    <div class="overlap-group-wrapper">
-      <div class="overlap-group">
-        <img class="maxresdefault" src="/crime/static/img/5.jpg" />
-        <img class="element-removebg-preview" src="/crime/static/img/3logo.png" />
-        <img class="profile" src="/crime/static/img/profile.png" />
-        <div class="rectangle"></div>
-        <div class="div"></div>
-        <div class="rectangle-2"></div>
-        <div class="rectangle-3"></div>
-        <div class="rectangle-4"></div>
-        <div class="rectangle-5"></div>
-        <div class="rectangle-6"></div>
-        <div class="rectangle-7"></div>
-        <input type="text" class="text-wrapper" placeholder="Enter Your Age" />
-        <input type="text" class="text-wrapper-2" placeholder="Enter Your Name" />
-        <input type="text" class="text-wrapper-3" placeholder="Enter Your Address" />
-        <input type="email" class="text-wrapper-4" placeholder="Enter Your E-mail" />
-        <div class="text-wrapper-5">Profile</div>
-        <button class="text-wrapper-6">Save</button>
-        <button class="text-wrapper-7">Logout</button>
-      </div>
-    </div>
-  </div>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="container bg-dark text-white">
+    <h2>Profile</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="mb-3">
+            <label for="age" class="form-label">Age</label>
+            <input type="number" class="form-control" id="age" name="age" required>
+        </div>
+        <div class="mb-3">
+            <label for="gender" class="form-label">Gender</label>
+            <select class="form-select" id="gender" name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="tel" class="form-control" id="phone" name="phone" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" class="form-control" id="location" name="location" readonly>
+            <button type="button" class="btn btn-primary mt-2" onclick="getLocation()">Get Location</button>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Profile</button>
+    </form>
+</div>
+
+<!-- JavaScript for geolocation -->
+<script>
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    }
+
+    function showPosition(position) {
+        var locationField = document.getElementById("location");
+        locationField.value = "Latitude: " + position.coords.latitude + 
+                              " | Longitude: " + position.coords.longitude;
+    }
+</script>
+{% endblock %}
