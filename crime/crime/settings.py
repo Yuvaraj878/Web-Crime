@@ -121,7 +121,19 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 # Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
+# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Set the session timeout to 20 minutes (in seconds)
+SESSION_COOKIE_AGE = 1200  # 20 minutes
+
+# Save the session on every request to update the timeout
+SESSION_SAVE_EVERY_REQUEST = True
+
+# Optional: Specify a custom URL for the login page
+LOGIN_URL = 'login'

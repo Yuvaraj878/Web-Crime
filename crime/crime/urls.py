@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from crimeapp import views
-
+from django.contrib.auth.views import LogoutView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/',views.login,name='login'),
@@ -26,4 +26,5 @@ urlpatterns = [
     path('dashboard/',views.dashboard,name='dashboard'),
     path('emergency/',views.emergency,name='emergency'),
     path('police_dashboard/',views.police_dashboard,name='police_dashboard'),
+    path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
 ]

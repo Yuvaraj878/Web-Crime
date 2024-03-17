@@ -3,7 +3,7 @@
 {% block title %}Profile{% endblock %}
 
 {% block content %}
-<div class="container bg-dark text-white">
+<div class="container bg-dark text-white overflow-auto" style="background-image: url('/crime/static/img/blue.jpg'); background-repeat: no-repeat;background-size: cover;">
     <h2>Profile</h2>
     <form method="post">
         {% csrf_token %}
