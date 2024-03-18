@@ -18,13 +18,15 @@ from django.contrib import admin
 from django.urls import path
 from crimeapp import views
 from django.contrib.auth.views import LogoutView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/',views.login,name='login'),
-    path('profile/',views.profile,name='profile'),
-    path('home/',views.home,name='home'),
-    path('dashboard/',views.dashboard,name='dashboard'),
-    path('emergency/',views.emergency,name='emergency'),
-    path('police_dashboard/',views.police_dashboard,name='police_dashboard'),
+    path('login/', views.user_login, name='login'),  # Use user_login view for login
+    path('police_dashboard/', views.police_dashboard, name='police_dashboard'),
+    path('profile/', views.profile, name='profile'),
+    path('home/', views.home, name='home'),
+    path('dashboard/', views.dashboard, name='dashboard'),
+    path('emergency/', views.emergency, name='emergency'),
     path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
 ]
+
