@@ -3,11 +3,12 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<div class="container-fluid bg-warning text-dark p-5">
+<div class="container-fluid bg-dark text-white p-5" style="background-image: url('/crime/static/img/blue.jpg'); background-repeat: no-repeat;background-size: cover;">
     <h2 class="text-center">Welcome to Home Page</h2>
     <p class="text-center">Here, you can add links to various sections of your application.</p>
     <div class="text-center">
         <a href="{% url 'dashboard' %}" class="btn btn-primary">Go to Dashboard</a>
     </div>
 </div>
+
 {% endblock %}

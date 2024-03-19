@@ -14,17 +14,19 @@
     </nav>
 
     <!-- Content -->
-    <div class="container bg-dark text-white">
-        <h2>Emergency</h2>
-        <p>If you're in danger or need immediate assistance, please use the form below to send an alert.</p>
-        <form method="post" id="alertForm">
-            {% csrf_token %}
-            <div class="mb-3">
-                <label for="message" class="form-label">Alert Message</label>
-                <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-danger">Send Alert</button>
-        </form>
+    <div class="container-fluid bg-dark text-white p-5" style="background-image: url('/crime/static/img/blue.jpg'); background-repeat: no-repeat;background-size: cover;">
+        <div class="container bg-dark text-white">
+            <h2>Emergency</h2>
+            <p>If you're in danger or need immediate assistance, please use the form below to send an alert.</p>
+            <form method="post" id="alertForm">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="message" class="form-label">Alert Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-danger">Send Alert</button>
+            </form>
+        </div>
     </div>
 
 
