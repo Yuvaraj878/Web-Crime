@@ -14,7 +14,7 @@ def user_login(request):
             if user.groups.filter(name='Police').exists():
                 return redirect('police_dashboard')  # Redirect to police dashboard if police user
             else:
-                return redirect('home')  # Redirect to home for regular users
+                return redirect('profile')  # Redirect to home for regular users
         else:
             messages.error(request, 'Invalid username or password')
     return render(request, 'login.html')
@@ -22,7 +22,7 @@ def user_login(request):
 @login_required(login_url='login')
 def home(request):
     username = request.user.username
-    return render(request, 'home.html', {'username': username})
+    return render(request, 'profile.html', {'username': username})
 
 @login_required(login_url='login')
 def police_dashboard(request):
