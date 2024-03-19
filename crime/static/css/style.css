@@ -38,4 +38,18 @@
   padding: 20px 0;
 }
 
+.sos-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #FF6347; /* Red color for SOS */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
+.sos-button:hover {
+  background-color: #FF0000; /* Darker red on hover */
+}

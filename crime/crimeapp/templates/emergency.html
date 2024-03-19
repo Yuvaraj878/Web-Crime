@@ -3,51 +3,62 @@
 {% block title %}Emergency{% endblock %}
 
 {% block content %}
+<style>
+    .sos-button,
+    .emergency-button {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background-color: #FF6347; /* Red color for SOS */
+        color: white;
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        margin: 20px; /* Proper spacing between buttons */
+    }
 
+    .sos-button:hover,
+    .emergency-button:hover {
+        background-color: #FF0000; 
+        transform: scale(1.05); 
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center; /* Align buttons to the center */
+        margin-top: 20px; /* Add some top margin */
+    }
+</style>
 <body>
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Emergency Alert</a>
-        </div>
-    </nav>
-
-    <!-- Content -->
-    <div class="container-fluid bg-dark text-white p-5" style="background-image: url('/crime/static/img/blue.jpg'); background-repeat: no-repeat;background-size: cover;">
-        <div class="container bg-dark text-white">
-            <h2>Emergency</h2>
-            <p>If you're in danger or need immediate assistance, please use the form below to send an alert.</p>
-            <form method="post" id="alertForm">
-                {% csrf_token %}
-                <div class="mb-3">
-                    <label for="message" class="form-label">Alert Message</label>
-                    <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-danger">Send Alert</button>
-            </form>
-        </div>
+    <div class="button-container">
+        <button class="btn btn-danger sos-button" title="Send SOS signal to the police">SOS Immediate Alert</button>
+        <button class="btn btn-danger emergency-button" title="Record and forward threat calls to the police">Emergency Call Record</button>
     </div>
-
-
-    <!-- JavaScript for handling form submission -->
+    
     <script>
-        document.getElementById("alertForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent the form from submitting normally
-            
-            // Get the alert message from the form
-            var message = document.getElementById("message").value;
-            
-            // Here you can send the alert message to the server using AJAX or perform any other action
-            
-            // For demonstration purposes, let's display an alert
-            alert("Alert message sent: " + message);
-            
-            // Optionally, you can redirect the user to another page after submitting the alert
-            // window.location.href = "/thank-you-page"; // Redirect to a thank-you page
-        });
+        // Function to trigger SOS signal to the police
+        function triggerSOS() {
+            alert('SOS signal sent to the police!');
+            // Here you can make AJAX calls to notify the police backend system
+        }
+
+        // Function to record threat calls and forward them to the police
+        function recordThreat() {
+            var threatDetails = prompt('Please provide details of the threat:');
+            if (threatDetails) {
+                alert('Threat call recorded and forwarded to the police: ' + threatDetails);
+                // Here you can make AJAX calls to record and forward the threat details to the police
+            }
+        }
+
+        // Attach click event listeners to the SOS and Emergency buttons
+        document.querySelector('.sos-button').addEventListener('click', triggerSOS);
+        document.querySelector('.emergency-button').addEventListener('click', recordThreat);
     </script>
 </body>
 </html>
-
 {% endblock %}

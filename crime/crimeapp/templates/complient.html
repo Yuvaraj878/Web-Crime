@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Online Complient{% endblock %}
+
+{% block content %}
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Online Complient</a>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container-fluid bg-dark text-white p-5" style="background-image: url('/crime/static/img/blue.jpg'); background-repeat: no-repeat;background-size: cover;">
+        <div class="container bg-dark text-white">
+            <h2>Complient</h2>
+            <p>If you're in danger or need immediate assistance, please use the form below to send an alert.</p>
+            <form method="post" id="alertForm">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="message" class="form-label">Complient Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-danger">Send Complient</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- JavaScript for handling form submission -->
+    <script>
+        document.getElementById("alertForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+            
+            // Get the alert message from the form
+            var message = document.getElementById("message").value;
+            
+            // Here you can send the alert message to the server using AJAX or perform any other action
+            
+            // For demonstration purposes, let's display an alert
+            alert("Alert message sent: " + message);
+            
+            // Optionally, you can redirect the user to another page after submitting the alert
+            // window.location.href = "/thank-you-page"; // Redirect to a thank-you page
+        });
+    </script>
+</body>
+</html>
+
+{% endblock %}

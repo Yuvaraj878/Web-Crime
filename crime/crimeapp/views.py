@@ -46,6 +46,11 @@ def emergency(request):
     context={}
     return render(request,'emergency.html',context)
 
+def complient(request):
+    context={}
+    return render(request,'complient.html',context)
+
+
 def police_dashboard(request):
     context={}
     return render(request,'police_dashboard.html',context)
