@@ -3,10 +3,10 @@ from django.contrib import admin
 
 class Public(models.Model):
     name = models.CharField(max_length=100)
-    age = models.CharField(max_length=100)
-    gender = models.CharField(max_length=100)
+    age = models.PositiveIntegerField()
+    gender = models.CharField(max_length=10, choices=(('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')))
     email = models.EmailField(max_length=100)
-    phone = models.CharField(max_length=100)
+    phone = models.CharField(max_length=15)
     location = models.CharField(max_length=100)
 
     def __str__(self):
@@ -20,7 +20,7 @@ class PublicAdmin(admin.ModelAdmin):
 class GlobalConfig(models.Model):
     name = models.CharField(max_length=100)
     # status = Enabled, Disabled
-    status = models.CharField(max_length=10)
+    status = models.CharField(max_length=10, choices=(('Enabled', 'Enabled'), ('Disabled', 'Disabled')))
     int_value = models.IntegerField()
     string_value = models.CharField(max_length=100)
     float_value = models.FloatField()
@@ -41,3 +41,12 @@ class PoliceStation(models.Model):
 
 class PoliceStationAdmin(admin.ModelAdmin):
     list_display=('name','location','capacity','officers_count')
+
+class CrimePrediction(models.Model):
+    unit_name = models.CharField(max_length=100)
+    district_name = models.CharField(max_length=100)
+    crime_head_name = models.CharField(max_length=100)
+    crime_group = models.CharField(max_length=100)  # Predicted result from the ML model
+
+    def __str__(self):
+        return f"{self.unit_name} - {self.district_name} - {self.crime_head_name}"

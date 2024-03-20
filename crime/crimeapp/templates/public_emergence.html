@@ -1,7 +1,35 @@
 {% extends 'base2.html' %}
 
-{% block title %}Public Emergence{% endblock %}
+{% block title %}Police Dashboard{% endblock %}
 
 {% block content %}
+<div class="container-fluid bg-dark text-white p-5" style="background-image: url('/crime/static/img/5.jpg'); background-repeat: no-repeat; background-size: cover;">
+    <!-- Section to display public alerts -->
+    <h2>Public Alerts</h2>
+    <div id="publicAlerts"></div>
+</div>
 
+<script>
+    // Function to fetch and display public alerts
+    function fetchPublicAlerts() {
+        // Make AJAX request to fetch public alerts from the server
+        fetch('/get_public_alerts/')
+        .then(response => response.json())
+        .then(data => {
+            // Display public alerts in the #publicAlerts div
+            data.forEach(alert => {
+                // Create an alert message element
+                var alertDiv = document.createElement('div');
+                alertDiv.classList.add('alert', 'alert-danger');
+                alertDiv.textContent = `Alert from ${alert.sender}: ${alert.message}`;
+                document.getElementById('publicAlerts').appendChild(alertDiv);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching public alerts:', error);
+        });
+    }
+
+    fetchPublicAlerts();
+</script>
 {% endblock %}

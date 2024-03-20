@@ -3,5 +3,49 @@
 {% block title %}Police Dashboard{% endblock %}
 
 {% block content %}
+<div class="container-fluid bg-dark text-white p-5" style="background-image: url('/crime/static/img/5.jpg'); background-repeat: no-repeat; background-size: cover;">
+    <form id="crimePredictionForm">
+        <div class="mb-3">
+            <label for="unitName" class="form-label">Unit Name</label>
+            <input type="text" class="form-control" id="unitName" name="unitName">
+        </div>
+        <div class="mb-3">
+            <label for="districtName" class="form-label">District Name</label>
+            <input type="text" class="form-control" id="districtName" name="districtName">
+        </div>
+        <div class="mb-3">
+            <label for="crimeHeadName" class="form-label">Crime Head Name</label>
+            <input type="text" class="form-control" id="crimeHeadName" name="crimeHeadName">
+        </div>
+        <button type="submit" class="btn btn-primary">Predict Crime Group</button>
+    </form>
+    <div id="predictionResult" class="mt-3"></div>
+</div>
+
+<script>
+    document.getElementById('crimePredictionForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var formData = new FormData(this);
+        
+        fetch('/predict_crime_group/', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Redirect to the result page with predicted crime group
+            var params = new URLSearchParams({
+                'crimeGroup': data.crimeGroup,
+                'unitName': formData.get('unitName'),
+                'districtName': formData.get('districtName'),
+                'crimeHeadName': formData.get('crimeHeadName')
+            });
+            window.location.href = '/result/?' + params.toString();
+        })
+        .catch(error => {
+            console.error('Error predicting crime group:', error);
+        });
+    });
+</script>
 
 {% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base2.html' %}
+
+{% block title %}Predicted Crime Group{% endblock %}
+
+{% block content %}
+<div class="container-fluid bg-dark text-white p-5" style="background-image: url('/crime/static/img/5.jpg'); background-repeat: no-repeat;background-size: cover;">
+    <h2>Predicted Crime Group</h2>
+    <div class="mt-4">
+        <h4>Input Values:</h4>
+        <ul class="list-group">
+            <li class="list-group-item">Unit Name: {{ unit_name }}</li>
+            <li class="list-group-item">District Name: {{ district_name }}</li>
+            <li class="list-group-item">Crime Head Name: {{ crime_head_name }}</li>
+        </ul>
+    </div>
+    <div class="mt-4">
+        <h4>Predicted Crime Group:</h4>
+        <p>{{ predicted_crime_group }}</p>
+    </div>
+</div>
+{% endblock %}
