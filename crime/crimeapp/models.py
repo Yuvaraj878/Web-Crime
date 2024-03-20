@@ -50,3 +50,5 @@ class CrimePrediction(models.Model):
 
     def __str__(self):
         return f"{self.unit_name} - {self.district_name} - {self.crime_head_name}"
+
+

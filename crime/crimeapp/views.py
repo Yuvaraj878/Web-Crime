@@ -1,9 +1,14 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Public
+
+@login_required(login_url='login')
+def user_logout(request):
+    logout(request)
+    return redirect('login')
 
 def user_login(request):
     if request.method == 'POST':
@@ -13,17 +18,17 @@ def user_login(request):
         if user is not None:
             login(request, user)
             if user.groups.filter(name='Police').exists():
-                return redirect('police_dashboard')  # Redirect to police dashboard if police user
+                return redirect('police_dashboard')
             else:
-                return redirect('home')  # Redirect to home for regular users
+                return redirect('home')
         else:
             messages.error(request, 'Invalid username or password')
     return render(request, 'login.html')
 
 @login_required(login_url='login')
 def home(request):
+    # Your home view logic here
     if request.user.groups.filter(name='Public').exists():
-        # Check if the user is public and has already filled the profile
         try:
             public_profile = Public.objects.get(user=request.user)
             return render(request, 'home.html')
@@ -34,25 +39,16 @@ def home(request):
 
 @login_required(login_url='login')
 def police_dashboard(request):
-    # Only police users will reach here due to login_required decorator and user authentication check in user_login view
+    # Your police dashboard view logic here
     return render(request, 'police_dashboard.html')
-
-def user_logout(request):
-    logout(request)
-    return redirect('login')
 
 def profile(request):
     if request.method == 'POST':
         # Handle saving the profile details here
-        return redirect('home')  # Redirect to home page after saving profile
+        return redirect('home')
     return render(request, 'profile.html')
 
-# Other views remain unchanged
 
-
-def profile(request):
-    context={}
-    return render(request,'profile.html',context)
 
 def home(request):
     context={}
@@ -98,7 +94,6 @@ def predict_crime_group(request):
     else:
         return JsonResponse({'error': 'Invalid request method'})
 
-
 def show_result(request):
     unit_name = "Sample Unit"  # Replace with actual input value
     district_name = "Sample District"  # Replace with actual input value
@@ -113,5 +108,4 @@ def show_result(request):
     }
     
     return render(request, 'result.html', context)
-
 

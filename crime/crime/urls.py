@@ -30,6 +30,7 @@ urlpatterns = [
     path('complient/', views.complient, name='complient'),
     path('result/', views.result, name='result'),
     path('public_emergence/', views.public_emergence, name='public_emergence'),
-    path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
+    path('logout/', views.user_logout, name='logout'),
+ 
 ]
 
