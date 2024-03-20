@@ -54,3 +54,8 @@ def complient(request):
 def police_dashboard(request):
     context={}
     return render(request,'police_dashboard.html',context)
+
+def public_emergence(request):
+    context={}
+    return render(request,'public_emergence.html',context)
+

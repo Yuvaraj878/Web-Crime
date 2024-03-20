@@ -1,0 +1,86 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000;
+            background-image: url('/crime/static/img/blue.jpg');
+            background-size: cover; 
+            background-position: center; 
+            overflow: auto;
+        }
+
+        .crime-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            background: url('{% static "img/crime_backgroun.png" %}') repeat;
+            animation: animateCrime 20s linear infinite;
+        }
+    
+        @keyframes animateCrime {
+            0% { background-position: 0 0; }
+            100% { background-position: 1000px 1000px; }
+        }
+    </style>    
+
+</head>
+<body>
+    <div class="crime-animation"></div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="/crime/static/img/3logo.png" alt="Your App Logo">
+              </a>              
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span><img class="profile" src="/crime/static/img/profile.png" /></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'police_dashboard' %}">Police Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'public_emergence' %}">Public Emergence</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        {% block content %}
+        <!-- Content of individual pages will go here -->
+        {% endblock %}
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Custom JS -->
+    <script src="{% static 'js/script.js' %}"></script>
+    <footer class="footer mt-5">
+        <div class="container text-center">
+            <p>&copy; 2024 Team Analynx. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

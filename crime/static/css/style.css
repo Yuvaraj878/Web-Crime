@@ -53,3 +53,10 @@
 .sos-button:hover {
   background-color: #FF0000; /* Darker red on hover */
 }
+
+.navbar-brand,
+.nav-link {
+    font-size: 16px; /* Adjust as needed */
+    font-family: Arial, sans-serif; /* Use your preferred font family */
+    /* Other styling properties (color, weight, etc.) can also be applied here */
+}
