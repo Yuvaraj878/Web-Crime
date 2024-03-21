@@ -9,22 +9,22 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">Online Complient</a>
+            <a class="navbar-brand" href="#">Online Compliant</a>
         </div>
     </nav>
 
     <!-- Content -->
     <div class="container-fluid bg-dark text-white p-5" style="background-image: url('/crime/static/img/blue.jpg'); background-repeat: no-repeat;background-size: cover;">
         <div class="container bg-dark text-white">
-            <h2>Complient</h2>
+            <h2>Compliant</h2>
             <p>If you're in danger or need immediate assistance, please use the form below to send an alert.</p>
             <form method="post" id="alertForm">
                 {% csrf_token %}
                 <div class="mb-3">
-                    <label for="message" class="form-label">Complient Message</label>
+                    <label for="message" class="form-label">Compliant Message</label>
                     <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-danger">Send Complient</button>
+                <button type="submit" class="btn btn-danger">Send Compliant</button>
             </form>
         </div>
     </div>
