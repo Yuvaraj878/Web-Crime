@@ -115,18 +115,18 @@ def result(request):
 
 from django.http import JsonResponse
 
-def predict_crime_group(request):
-    if request.method == 'POST':
-        unit_name = request.POST.get('unitName')
-        district_name = request.POST.get('districtName')
-        crime_head_name = request.POST.get('crimeHeadName')
+#def predict_crime_group(request):
+    #if request.method == 'POST':
+        #unit_name = request.POST.get('unitName')
+        #district_name = request.POST.get('districtName')
+        #crime_head_name = request.POST.get('crimeHeadName')
         
         # Use your ML model to predict the crime group based on the input data
-        predicted_crime_group = predict(unit_name, district_name, crime_head_name)  # Implement your prediction function
+        #predicted_crime_group = predict(unit_name, district_name, crime_head_name)  # Implement your prediction function
         
-        return JsonResponse({'crimeGroup': predicted_crime_group})
-    else:
-        return JsonResponse({'error': 'Invalid request method'})
+        #return JsonResponse({'crimeGroup': predicted_crime_group})
+    #else:
+        #return JsonResponse({'error': 'Invalid request method'})
 
 def show_result(request):
     unit_name = "Sample Unit"  # Replace with actual input value
