@@ -3,20 +3,105 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
+<style>
+    /* Define the animation */
+    @keyframes slideIn {
+        0% { transform: translateY(-100%); opacity: 0; }
+        100% { transform: translateY(0); opacity: 1; }
+    }
+        
+    @keyframes glowing {
+        0% { text-shadow: 0 0 5px #fff; }
+        50% { text-shadow: 0 0 20px #00f, 0 0 30px #0ff, 0 0 40px #f0f; }
+        100% { text-shadow: 0 0 5px #fff; }
+    }
+
+    /* Apply the animation to the element */
+    .text-center1 {
+        text-align: center;
+        animation: slideIn 0.5s forwards; /* Play the animation once and keep the final state */
+        position: relative;
+        top: -50px; /* Adjust the top position */
+        left: 50%;
+        text-align: center;
+        animation: glowing 2s infinite; 
+        transform: translateX(-50%);
+    }
+</style>
+
 <div class="container-fluid bg-dark text-white p-5" style="background-image: url('/crime/static/img/blue.jpg'); background-repeat: no-repeat; background-size: cover;">
-    <h2 class="text-center">Dashboard</h2>
-    <p class="text-center">This is your dashboard where you can view crime predictions and graphs.</p>
-    <!-- Add graphs and crime predictions here -->
+    <h2 class="text-center1">Dashboard</h2>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!-- Example: -->
     <div class="row">
         <div class="col-md-6">
-            <h3>Crime Trends</h3>
+            <h3 class="text-center">Crime Trends</h3>
             <canvas id="crimeTrendsChart"></canvas>
         </div>
         <div class="col-md-6">
-            <h3>Crime Distribution</h3>
+            <h3 class="text-center">Crime Distribution</h3>
             <canvas id="crimeDistributionChart"></canvas>
         </div>
     </div>
 </div>
+<script>
+    // Sample data for the charts
+    const crimeTrendsData = {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+        datasets: [{
+            label: 'Crime Trends',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1,
+            data: [12, 19, 3, 5, 2, 3], // Sample data points
+        }]
+    };
+
+    const crimeDistributionData = {
+        labels: ['Theft', 'Assault', 'Burglary', 'Robbery', 'Vandalism'],
+        datasets: [{
+            label: 'Crime Distribution',
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+            ],
+            borderWidth: 1,
+            data: [12, 19, 3, 5, 2], // Sample data points
+        }]
+    };
+
+    // Get the canvas elements
+    const crimeTrendsCanvas = document.getElementById('crimeTrendsChart');
+    const crimeDistributionCanvas = document.getElementById('crimeDistributionChart');
+
+    // Create the charts
+    const crimeTrendsChart = new Chart(crimeTrendsCanvas, {
+        type: 'bar',
+        data: crimeTrendsData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    const crimeDistributionChart = new Chart(crimeDistributionCanvas, {
+        type: 'pie',
+        data: crimeDistributionData,
+    });
+</script>
+
 {% endblock %}
