@@ -1,26 +1,124 @@
-{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Login{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <!-- Custom crime-related background animation CSS -->
+    <style>
+        body {
+            background-color: #000;
+            background-image: url('/crime/static/img/blue.jpg');
+            background-repeat: no-repeat;
+            overflow: scroll;
+            background-size: cover;
+        }
 
-{% block title %}Login{% endblock %}
+        .crime-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            background: url('{% static "img/crime_backgroun.png" %}') repeat;
+            animation: animateCrime 20s linear infinite;
+        }
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Set the height to 100% of the viewport height */
+            
+        }
 
-{% block content %}
-<div class="container-fluid bg-dark text-white p-5" style="background-image: url('/crime/static/img/blue.jpg'); background-repeat: no-repeat;background-size: cover;">
-    <h2 class="text-center">Login</h2>
-    <form method="post">
-        {% csrf_token %}
-        {% if error_message %}
-            <div class="alert alert-danger" role="alert">
-                {{ error_message }}
+        .login-form {
+            background-color: rgb(48, 43, 43); /* Add transparency to the background */
+            padding: 40px;
+            background-image: url('/crime/static/img/5.jpg');
+            border-radius: 20px;
+        }
+        /* Custom styling for form controls */
+        .form-control {
+        display: block;
+        width: 350px; /* Adjust the width as needed */
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
+
+            /* Style for the focused state of form controls */
+        .form-control:focus {
+            color: #495057;
+            background-color: #fff;
+            border-color: rgb(48, 48, 142);
+            outline: 0;
+            box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
+        }
+        .text-center {
+            display: flex;
+            justify-content: center;
+        }
+
+
+
+
+        @keyframes animateCrime {
+            0% { background-position: 0 0; }
+            100% { background-position: 1000px 1000px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid bg-dark text-white p-5" style="background-image: url('/crime/static/img/blue.jpg'); background-repeat: no-repeat;background-size: cover;">
+        <div class="login-container">
+            <div class="login-form">
+                <img src="/crime/static/img/3logo.png" alt="Your App Logo">
+                <h2 class="text-center">Login</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {% if error_message %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error_message }}
+                    </div>
+                    {% endif %}
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <div class="text-center"> <!-- Container for centering button -->
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
             </div>
-        {% endif %}
-        <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input type="text" class="form-control" id="username" name="username" required>
         </div>
-        <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" name="password" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Login</button>
-    </form>
-</div>
-{% endblock %}
+    </div>
+
+     <!-- Bootstrap JS -->
+     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+     <!-- Custom JS -->
+     <script src="{% static 'js/script.js' %}"></script>
+     <footer class="footer mt-5">
+         <div class="container text-center">
+             <p>&copy; 2024 Team Analynx. All Rights Reserved.</p>
+         </div>
+     </footer>
+ </body>
+ </html>
+
