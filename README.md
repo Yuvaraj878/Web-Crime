@@ -5,11 +5,11 @@ The Crime Prediction and Management System is a web-based application designed t
 
 ## Table of Contents 📑
 
-### Usage 🖥️
-### Features ✨
-### Data Sources 📊
-### Deployment 🚀
-### License 📝
+### [Usage](#usage-) 🖥️
+### [Features](#features-) ✨
+### [Data Sources](#data-sources-) 📊
+### [Deployment](#deployment-) 🚀
+
 
 ## Usage 📲
 
