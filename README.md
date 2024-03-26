@@ -1,4 +1,4 @@
-## 🚔 Crime Prediction and Management System 📊
+## 🚔 Crime Prediction Analysis and Management System 📊
 ### Overview ℹ️
 
 The Crime Prediction and Management System is a web-based application designed to assist law enforcement agencies and the public in predicting and managing crime incidents effectively. By leveraging data analytics and visualization techniques, the system provides insights into crime trends, distribution, and hotspots, enabling better decision-making and resource allocation.
