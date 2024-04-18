@@ -41,10 +41,31 @@
     
     <script>
         // Function to trigger SOS signal to the police
-        function triggerSOS() {
-            alert('SOS signal sent to the police!');
-            // Here you can make AJAX calls to notify the police backend system
-        }
+    function triggerSOS() {
+        alert('SOS signal sent to the police!');
+
+        // Here you can make AJAX calls to notify the police backend system
+        // Example AJAX call
+        // Replace the URL with the actual endpoint to send the SOS signal
+        // Replace the data with the actual data to be sent
+        // Replace the success and error callbacks with your own logic
+
+        // Make an AJAX POST request to the backend endpoint
+        $.ajax({
+            url: '/api/send-sos-signal', // Replace with the actual endpoint
+            method: 'POST',
+            data: {
+                sosSignal: true // Replace with actual data if needed
+            },
+            success: function(response) {
+                alert('SOS signal sent to the police successfully!');
+            },
+            error: function(error) {
+                alert('Failed to send the SOS signal to the police.');
+            }
+        });
+}
+
 
         // Function to record threat calls and forward them to the police
         function recordThreat() {
@@ -52,6 +73,23 @@
             if (threatDetails) {
                 alert('Threat call recorded and forwarded to the police: ' + threatDetails);
                 // Here you can make AJAX calls to record and forward the threat details to the police
+                // Example AJAX call
+                // Replace the URL with the actual endpoint to send the threat details
+                // Replace the data with the actual data to be sent
+                // Replace the success and error callbacks with your own logic
+                $.ajax({
+                    url: '/api/send-threat-details',
+                    method: 'POST',
+                    data: {
+                        threatDetails: threatDetails
+                    },
+                    success: function(response) {
+                        alert('Threat details recorded and forwarded to the police successfully!');
+                    },
+                    error: function(error) {
+                        alert('Failed to record and forward the threat details to the police.');
+                    }
+                });
             }
         }
 
